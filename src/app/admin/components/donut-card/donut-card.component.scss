@@ -1,12 +1,17 @@
+
 .donut-card {
-  display: flex;align-items: center;
+  display: flex;
+  align-items: center;
   background-color: #f7f7ff;
   border-radius: 5px;
   margin-bottom: 5px;
   padding: 5px 10px;
-  transition: transform .2s ease-in;
+  transition: transform 0.2s ease-in;
   &:hover {
     transform: translateY(-3px);
+  }
+  &-promo {
+    border: 2px solid #eee;
   }
   &-name {
     font-size: 16px;
@@ -18,5 +23,6 @@
   &-icon {
     width: 50px;
     margin-right: 10px;
+    aspect-ratio: 1;
   }
 }

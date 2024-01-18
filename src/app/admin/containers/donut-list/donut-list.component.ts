@@ -21,6 +21,7 @@ this.donuts = [{
   name: 'Glazed',
   icon: 'glazed',
   price:179,
+  promo: true,
   description: 'Glazed as fuck'
 },
 {
