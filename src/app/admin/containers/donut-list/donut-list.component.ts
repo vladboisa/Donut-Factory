@@ -4,7 +4,7 @@ import { Donut } from '../../models/donut.model';
 @Component({
   selector: 'app-donut-list',
   templateUrl: './donut-list.component.html',
-  styleUrls: ['./donut-list.component.sass']
+  styleUrls: ['./donut-list.component.scss']
 })
 export class DonutListComponent {
 donuts!: Donut[];
