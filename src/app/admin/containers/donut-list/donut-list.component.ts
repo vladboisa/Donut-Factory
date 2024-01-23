@@ -8,12 +8,14 @@ import { Donut } from '../../models/donut.model';
 })
 export class DonutListComponent {
 donuts!: Donut[];
+constructor () {}
 ngOnInit() {
 this.donuts = [{
   id: 'yHgsaf',
   name: 'Chocolate',
   icon: 'chocolate',
   price:119,
+  promo: 'limited',
   description: 'Chocolate'
 },
 {
@@ -21,7 +23,7 @@ this.donuts = [{
   name: 'Glazed',
   icon: 'glazed',
   price:179,
-  promo: true,
+  promo: 'new',
   description: 'Glazed as fuck'
 },
 {
@@ -30,6 +32,21 @@ this.donuts = [{
   icon:'caramel',
   price:129,
   description: 'Cara cara mel'
+  },
+{id: 'kZ8422',
+name: 'Default donut',
+icon:'default',
+price:89,
+description: 'Tasty default'
+},
+{id: 'fSap21',
+name: 'White',
+icon:'white',
+price:109,
+description: 'Sooooo fully white'
 }];
+}
+  trackById(index: number, name: Donut) {
+  return name.id;
 }
 }
