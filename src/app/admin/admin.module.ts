@@ -4,6 +4,7 @@ import { DonutListComponent } from './containers/donut-list/donut-list.component
 import { DonutCardComponent } from './components/donut-card/donut-card.component';
 import { DonutSingleComponent } from './containers/donut-single/donut-single.component';
 import { DonutFormComponent } from './components/donut-form/donut-form.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,7 @@ import { DonutFormComponent } from './components/donut-form/donut-form.component
     DonutFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,FormsModule
   ],
   exports: [DonutListComponent, DonutSingleComponent]
 })
