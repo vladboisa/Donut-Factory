@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./donut-form.component.scss']
 })
 export class DonutFormComponent {
-
+icons :string[] = [
+  'caramel',
+  'chocolate',
+  'default',
+  'glazed',
+  'white'
+]
 }
