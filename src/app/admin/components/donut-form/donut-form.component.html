@@ -1,14 +1,26 @@
-<form class="donut-form" #form="ngForm">
-  <label> <span>Name</span>
-    <input type="text" name="name" class="input" required minlength="5" ngModel #name="ngModel" />
-    <p>{{name.errors | json}}</p>
+<form class="donut-form" #form="ngForm" (ngSubmit)="handleSubmit(form)">
+  <label>
+    <span>Name</span>
+    <input
+      type="text"
+      name="name"
+      class="input"
+      required
+      minlength="5"
+      ngModel
+      #name="ngModel"
+    />
     <ng-container *ngIf="name.invalid && name.touched">
       <div [ngSwitch]="true">
-        <div class="donut-form-error" *ngSwitchCase="name.errors?.required">The name is required</div>
-        <div class="donut-form-error" *ngSwitchCase="name.errors?.minlength">Minimum length of a name is 5!</div>
+        <div class="donut-form-error" *ngSwitchCase="!!name.errors?.minlength">
+          Minimum length of a name is
+          {{ name.errors?.minlength?.requiredLength }}!
+        </div>
+        <div class="donut-form-error" *ngSwitchCase="name.errors?.required">
+          The name is required
+        </div>
       </div>
     </ng-container>
-
   </label>
   <label>
     <span>Price</span>
@@ -18,7 +30,7 @@
     <span>Icon</span>
     <select name="icon" class="input input--select" required ngModel>
       <option *ngFor="let icon of icons" [value]="icon">
-        {{icon}}
+        {{ icon }}
       </option>
     </select>
   </label>
@@ -26,21 +38,26 @@
   <div class="donut-form-radios">
     <p class="donut-form-radios-label">Promo:</p>
     <label>
-      <input type="radio" name="promo" required [value]="null" ngModel>
+      <input type="radio" name="promo" required [value]="null" ngModel />
       <span>None</span>
     </label>
     <label>
-      <input type="radio" name="promo" required value="new" ngModel>
+      <input type="radio" name="promo" required value="new" ngModel />
       <span>New</span>
     </label>
     <label>
-      <input type="radio" name="promo" required value="limited" ngModel>
+      <input type="radio" name="promo" required value="limited" ngModel />
       <span>Limited</span>
     </label>
   </div>
   <label for="">
     <span>Description</span>
-    <textarea name="description" class="input input--textarea" required ngModel></textarea>
+    <textarea
+      name="description"
+      class="input input--textarea"
+      required
+      ngModel
+    ></textarea>
   </label>
-  <pre>{{form.value | json}} </pre>
+
 </form>
