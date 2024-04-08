@@ -85,4 +85,12 @@ label {
 form .ng-invalid.ng-touched {
   background: #ffe7e7;
   border-color: #e66262;
+  &.input--select {
+    background-image: url("/assets/img/icon/down.svg");
+    background-position: 98% center;
+    background-repeat: no-repeat;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
 }
