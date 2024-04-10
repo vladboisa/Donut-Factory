@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-donut-form',
@@ -13,4 +14,16 @@ icons :string[] = [
   'glazed',
   'white'
 ]
+
+constructor () {
+
+}
+
+handleSubmit(form: NgForm) {
+  if (form.valid) {
+    console.log(form.value);
+  } else {
+    form.form.markAllAsTouched();
+  }
+}
 }
