@@ -8,6 +8,7 @@
       required
       minlength="5"
       ngModel
+      [ngModelOptions]="{updateOn: 'blur' }"
       #name="ngModel"
     />
     <ng-container *ngIf="name.invalid && name.touched">
@@ -24,29 +25,39 @@
   </label>
   <label>
     <span>Price</span>
-    <input type="number" name="price" class="input" ngModel />
+    <input type="number" name="price" class="input" required ngModel #price="ngModel"/>
+    <ng-container *ngIf="price.invalid && price.touched">
+        <div class="donut-form-error" *ngIf="price.errors?.required">
+          The Price is required
+      </div>
+    </ng-container>
   </label>
   <label for="">
     <span>Icon</span>
-    <select name="icon" class="input input--select" required ngModel>
+    <select name="icon" class="input input--select" required ngModel #icon="ngModel">
       <option *ngFor="let icon of icons" [value]="icon">
         {{ icon }}
       </option>
     </select>
+    <ng-container *ngIf="icon.invalid && icon.touched">
+        <div class="donut-form-error" *ngIf="icon.errors?.required">
+          The Icon is required
+      </div>
+    </ng-container>
   </label>
 
   <div class="donut-form-radios">
     <p class="donut-form-radios-label">Promo:</p>
     <label>
-      <input type="radio" name="promo" required [value]="null" ngModel />
+      <input type="radio" name="promo" [value]="undefined" ngModel />
       <span>None</span>
     </label>
     <label>
-      <input type="radio" name="promo" required value="new" ngModel />
+      <input type="radio" name="promo" value="new" ngModel />
       <span>New</span>
     </label>
     <label>
-      <input type="radio" name="promo" required value="limited" ngModel />
+      <input type="radio" name="promo" value="limited" ngModel />
       <span>Limited</span>
     </label>
   </div>
@@ -57,7 +68,19 @@
       class="input input--textarea"
       required
       ngModel
+      #textarea="ngModel"
     ></textarea>
+    <ng-container *ngIf="textarea.invalid && textarea.touched">
+      <div class="donut-form-error" *ngIf="textarea.errors?.required">
+        The Description is required
+    </div>
+  </ng-container>
   </label>
-  <button class="btn btn--green" type="submit">Create Donut</button>
+  <button class="btn btn--green" type="submit"  >Create Donut</button>
+  <button class="btn btn--grey" type="button"  (click)="form.resetForm()">Reset form</button>
+  <pre>{{form.value |json}} </pre>
+
+  <div class="donut-form--working" *ngIf="form.valid && form.submitted">
+  Wokring
+  </div>
 </form>
