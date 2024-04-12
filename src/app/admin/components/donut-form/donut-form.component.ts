@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Donut } from '../../models/donut.model';
 
 @Component({
   selector: 'app-donut-form',
@@ -7,6 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./donut-form.component.scss']
 })
 export class DonutFormComponent {
+  @Output() createForm = new EventEmitter<Donut>();
 icons :string[] = [
   'caramel',
   'chocolate',
@@ -21,7 +23,7 @@ constructor () {
 
 handleSubmit(form: NgForm) {
   if (form.valid) {
-    console.log(form.value);
+    this.createForm.emit(form.value)
   } else {
     form.form.markAllAsTouched();
   }

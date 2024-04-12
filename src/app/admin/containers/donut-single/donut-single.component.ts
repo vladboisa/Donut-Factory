@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Donut } from '../../models/donut.model';
 
 @Component({
   selector: 'app-donut-single',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./donut-single.component.scss']
 })
 export class DonutSingleComponent {
-
+  onCreate(donut: Donut) {
+  console.log("🚀 ~ DonutSingleComponent ~ createForm ~ donut:", donut)
+  }
 }
