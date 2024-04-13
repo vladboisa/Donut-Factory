@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Donut } from '../../models/donut.model';
 
@@ -8,6 +8,7 @@ import { Donut } from '../../models/donut.model';
   styleUrls: ['./donut-form.component.scss']
 })
 export class DonutFormComponent {
+  @Input() donut!: Donut;
   @Output() createForm = new EventEmitter<Donut>();
 icons :string[] = [
   'caramel',
