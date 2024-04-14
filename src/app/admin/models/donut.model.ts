@@ -1,5 +1,5 @@
 export interface Donut {
-  id:string | number,
+  id?:string | number,
   name:string,
   icon: string,
   promo?:'new' | 'limited',
