@@ -1,24 +1,20 @@
 import { Component } from '@angular/core';
 import { Donut } from '../../models/donut.model';
+import { DonutService } from '../../services/donut.service';
 
 @Component({
   selector: 'app-donut-single',
   templateUrl: './donut-single.component.html',
-  styleUrls: ['./donut-single.component.scss']
+  styleUrls: ['./donut-single.component.scss'],
 })
 export class DonutSingleComponent {
-  donut!:Donut;
+  donut!: Donut;
+  constructor(private donutService: DonutService) {}
   ngOnInit() {
-    this.donut = {
-      id: 'yHgsaf',
-      name: 'Chocolate',
-      icon: 'chocolate',
-      price:119,
-      promo: 'limited',
-      description: 'Chocolate'
-    }
+    const id = 'yHgsaf';
+    this.donut = this.donutService.readOneById(id);
   }
   onCreate(donut: Donut) {
-  console.log("🚀 ~ DonutSingleComponent ~ createForm ~ donut:", donut)
+    console.log('🚀 ~ DonutSingleComponent ~ createForm ~ donut:', donut);
   }
 }

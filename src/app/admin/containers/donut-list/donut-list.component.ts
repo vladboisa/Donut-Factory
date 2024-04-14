@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Donut } from '../../models/donut.model';
+import { DonutService } from '../../services/donut.service';
 
 @Component({
   selector: 'app-donut-list',
@@ -8,43 +9,9 @@ import { Donut } from '../../models/donut.model';
 })
 export class DonutListComponent {
 donuts!: Donut[];
-constructor () {}
+constructor (private donutService: DonutService) {}
 ngOnInit() {
-this.donuts = [{
-  id: 'yHgsaf',
-  name: 'Chocolate',
-  icon: 'chocolate',
-  price:119,
-  promo: 'limited',
-  description: 'Chocolate'
-},
-{
-  id: 'yHgasfasgsaf',
-  name: 'Glazed',
-  icon: 'glazed',
-  price:179,
-  promo: 'new',
-  description: 'Glazed as fuck'
-},
-{
-  id: 'yagsgasgHgsaf',
-  name: 'Caramel',
-  icon:'caramel',
-  price:129,
-  description: 'Cara cara mel'
-  },
-{id: 'kZ8422',
-name: 'Default donut',
-icon:'default',
-price:89,
-description: 'Tasty default'
-},
-{id: 'fSap21',
-name: 'White',
-icon:'white',
-price:109,
-description: 'Sooooo fully white'
-}];
+this.donuts = this.donutService.readAll();
 }
   trackById(index: number, name: Donut) {
   return name.id;
