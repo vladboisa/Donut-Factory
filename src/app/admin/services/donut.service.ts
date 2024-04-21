@@ -51,4 +51,7 @@ export class DonutService {
     if (donut) return donut;
     return { name: '', icon: '', price: 0, description: '' };
   }
+  create (payload: Donut) {
+    this.donuts = [...this.donuts, payload]
+  }
 }
