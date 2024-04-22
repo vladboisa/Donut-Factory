@@ -12,7 +12,7 @@
       #name="ngModel"
     />
     <ng-container *ngIf="name.invalid && name.touched">
-      <div [ngSwitch]="true">
+      <ng-container [ngSwitch]="true">
         <div class="donut-form-error" *ngSwitchCase="!!name.errors?.minlength">
           Minimum length of a name is
           {{ name.errors?.minlength?.requiredLength }}!
@@ -20,7 +20,7 @@
         <div class="donut-form-error" *ngSwitchCase="name.errors?.required">
           The name is required
         </div>
-      </div>
+      </ng-container>
     </ng-container>
   </label>
   <label>
@@ -30,14 +30,20 @@
       name="price"
       class="input"
       required
-      min="0"
+      min="1"
       [ngModel]="donut.price"
       #price="ngModel"
     />
     <ng-container *ngIf="price.invalid && price.touched">
-      <div class="donut-form-error" *ngIf="price.errors?.required">
-        The Price is required
-      </div>
+      <ng-container [ngSwitch]="true">
+        <div class="donut-form-error" *ngSwitchCase="price.errors?.required ">
+          The Price is required
+        </div>
+        <div class="donut-form-error" *ngSwitchCase="price.value <= 0">
+          The Price is need to be greater than 0
+        </div>
+      </ng-container>
+
     </ng-container>
   </label>
   <label for="">
