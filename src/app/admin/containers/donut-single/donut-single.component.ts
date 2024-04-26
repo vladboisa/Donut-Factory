@@ -11,12 +11,15 @@ export class DonutSingleComponent {
   donut!: Donut;
   constructor(private donutService: DonutService) {}
   ngOnInit() {
-    const id = '';
+    const id = 'fSap21';
     this.donut = this.donutService.readOneById(id);
   }
   onCreate(donut: Donut) {
     this.donutService.create(donut);
     console.log(this.donutService.readAll());
+  }
+  onUpdate(donut: Donut) {
+    this.donutService.update(donut);
   }
 
 }

@@ -1,3 +1,4 @@
 <div>
-  <app-donut-form [donut]="donut" (createForm)="onCreate($event)"></app-donut-form>
+  <app-donut-form [donut]="donut" (createForm)="onCreate($event)" (updateForm)="onUpdate($event)"></app-donut-form>
+  {{donut | json}}
 </div>
