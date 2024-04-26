@@ -1,4 +1,4 @@
-<form class="donut-form" #form="ngForm" (ngSubmit)="handleSubmit(form)">
+<form class="donut-form" #form="ngForm">
   <label>
     <span>Name</span>
     <input
@@ -36,14 +36,13 @@
     />
     <ng-container *ngIf="price.invalid && price.touched">
       <ng-container [ngSwitch]="true">
-        <div class="donut-form-error" *ngSwitchCase="price.errors?.required ">
+        <div class="donut-form-error" *ngSwitchCase="price.errors?.required">
           The Price is required
         </div>
         <div class="donut-form-error" *ngSwitchCase="price.value <= 0">
           The Price is need to be greater than 0
         </div>
       </ng-container>
-
     </ng-container>
   </label>
   <label for="">
@@ -106,7 +105,8 @@
       </div>
     </ng-container>
   </label>
-  <button class="btn btn--green" type="submit">Create Donut</button>
+  <button class="btn btn--green" type="button" (click)="handleCreate(form)">Create Donut</button>
+  <button class="btn btn--green" type="button" [disabled]="form.untouched" (click)="handleUpdate(form)">Update Donut</button>
   <button class="btn btn--grey" type="button" (click)="form.resetForm()">
     Reset form
   </button>
