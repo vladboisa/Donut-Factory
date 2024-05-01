@@ -63,4 +63,8 @@ export class DonutService {
     })
     console.log(this.donuts);
   }
+  delete (payload: Donut) {
+    this.donuts = this.donuts.filter((donut: Donut)=> donut.id !== payload.id);
+    console.log(this.donuts);
+  }
 }
