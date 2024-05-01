@@ -19,10 +19,11 @@ export class DonutFormComponent {
   @Input() donut!: Donut;
   @Output() createForm = new EventEmitter<Donut>();
   @Output() updateForm = new EventEmitter<Donut>();
-  @ViewChild('donut-form') form!: NgForm;
+  @Output() deleteForm = new EventEmitter<Donut>();
+
   icons: string[] = ['caramel', 'chocolate', 'default', 'glazed', 'white'];
 
-  constructor() { }
+  constructor() {}
 
   handleCreate(form: NgForm) {
     if (form.valid) {
@@ -37,6 +38,11 @@ export class DonutFormComponent {
       this.isFormChanged = false;
     } else {
       form.form.markAllAsTouched();
+    }
+  }
+  handleDelete() {
+    if (confirm(`Are you really wan't to delete ${this.donut.name}?`)) {
+      this.deleteForm.emit({ ...this.donut });
     }
   }
 }

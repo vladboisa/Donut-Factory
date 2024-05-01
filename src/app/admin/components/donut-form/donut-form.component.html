@@ -1,4 +1,8 @@
-<form class="donut-form" #form="ngForm" (change)="isFormChanged=!isFormChanged">
+<form
+  class="donut-form"
+  #form="ngForm"
+  (change)="isFormChanged = !isFormChanged"
+>
   <label>
     <span>Name</span>
     <input
@@ -105,8 +109,20 @@
       </div>
     </ng-container>
   </label>
-  <button class="btn btn--green" type="button" (click)="handleCreate(form)">Create Donut</button>
-  <button class="btn btn--green" type="button" [disabled]="form.untouched" (click)="handleUpdate(form)">Update Donut</button>
+  <button class="btn btn--green" type="button" (click)="handleCreate(form)">
+    Create Donut
+  </button>
+  <button class="btn btn--green" type="button" (click)="handleDelete()">
+    Delete Donut
+  </button>
+  <button
+    class="btn btn--green"
+    type="button"
+    [disabled]="form.untouched"
+    (click)="handleUpdate(form)"
+  >
+    Update Donut
+  </button>
   <button class="btn btn--grey" type="button" (click)="form.resetForm()">
     Reset form
   </button>
