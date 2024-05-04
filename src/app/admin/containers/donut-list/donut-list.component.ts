@@ -8,10 +8,11 @@ import { DonutService } from '../../services/donut.service';
   styleUrls: ['./donut-list.component.scss']
 })
 export class DonutListComponent {
-donuts!: Donut[];
+donuts: Donut[] = [];
 constructor (private donutService: DonutService) {}
 ngOnInit() {
-this.donuts = this.donutService.readAll();
+  console.log(this.donuts);
+this.donutService.readAll().subscribe((donuts:Donut[])=> {this.donuts = donuts; console.log(this.donuts);})
 }
   trackById(index: number, name: Donut) {
   return name.id;

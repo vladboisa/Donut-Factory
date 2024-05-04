@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonutService {
   private donuts : Donut[] = [];
-  constructor() { }
+  constructor(private http: HttpClient) { }
   readAll () {
-    return this.donuts;
+   return this.http.get<Donut[]>(`/api/donuts`);
   }
   readOneById(id:string) {
     const donut = this.donuts.find(
