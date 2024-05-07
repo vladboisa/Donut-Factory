@@ -5,16 +5,17 @@ import { DonutService } from '../../services/donut.service';
 @Component({
   selector: 'app-donut-list',
   templateUrl: './donut-list.component.html',
-  styleUrls: ['./donut-list.component.scss']
+  styleUrls: ['./donut-list.component.scss'],
 })
 export class DonutListComponent {
-donuts: Donut[] = [];
-constructor (private donutService: DonutService) {}
-ngOnInit() {
-  console.log(this.donuts);
-this.donutService.readAll().subscribe((donuts:Donut[])=> {this.donuts = donuts; console.log(this.donuts);})
-}
+  donuts!: Donut[];
+  constructor(private donutService: DonutService) {}
+  ngOnInit() {
+    this.donutService.readAll().subscribe((donuts: Donut[]) => {
+      this.donuts = donuts;
+    });
+  }
   trackById(index: number, name: Donut) {
-  return name.id;
-}
+    return name.id;
+  }
 }
