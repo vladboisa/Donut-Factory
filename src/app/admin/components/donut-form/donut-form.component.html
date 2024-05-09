@@ -2,6 +2,7 @@
   class="donut-form"
   #form="ngForm"
   (change)="isFormChanged = !isFormChanged"
+  *ngIf="donut; else nothing"
 >
   <label>
     <span>Name</span>
@@ -132,3 +133,5 @@
     Wokring
   </div>
 </form>
+
+<ng-template #nothing>Nothing here...</ng-template>
