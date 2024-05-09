@@ -12,7 +12,7 @@ export class DonutSingleComponent {
   constructor(private donutService: DonutService) {}
   ngOnInit() {
     const id = 'fSap21';
-    this.donut = this.donutService.readOneById(id);
+    this.donutService.readOneById(id).subscribe((donut)=>this.donut = donut)
   }
   onCreate(donut: Donut) {
     this.donutService.create(donut);
