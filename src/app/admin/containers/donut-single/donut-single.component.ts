@@ -11,18 +11,18 @@ export class DonutSingleComponent {
   donut!: Donut;
   constructor(private donutService: DonutService) {}
   ngOnInit() {
-    const id = 'fSap21';
-    this.donutService.readOneById(id).subscribe((donut)=>this.donut = donut)
+    const id = '80b3';
+    this.donutService.readOneById(id).subscribe((donut) => {
+      this.donut = donut;
+    });
   }
   onCreate(donut: Donut) {
-    this.donutService.create(donut);
-    console.log(this.donutService.readAll());
+    this.donutService.create(donut).subscribe();
   }
   onUpdate(donut: Donut) {
-    this.donutService.update(donut);
+    this.donutService.update(donut).subscribe();
   }
   onDelete(donut: Donut) {
-    this.donutService.delete(donut);
+    this.donutService.delete(donut).subscribe();
   }
-
 }
