@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
-import { HttpClient } from '@angular/common/http';
-import { interval, map, of, tap } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, interval, map, of, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +13,10 @@ export class DonutService {
     if (this.donuts.length) {
       return of(this.donuts).pipe(tap((v) => console.log('1', v)));
     }
-    return this.http
-      .get<Donut[]>(`/api/donuts`)
-      .pipe(tap((donuts: Donut[]) => (this.donuts = donuts)));
+    return this.http.get<Donut[]>(`/api/donuts`).pipe(
+      tap((donuts: Donut[]) => (this.donuts = donuts)),
+      catchError(this.handleError)
+    );
   }
   readOneById(id: string) {
     return this.readAll().pipe(
@@ -31,7 +32,8 @@ export class DonutService {
       tap((resultDonut) => {
         return (this.donuts = [...this.donuts, resultDonut]);
       }),
-      tap(() => console.log(this.donuts))
+      tap(() => console.log(this.donuts)),
+      catchError(this.handleError)
     );
   }
   update(payload: Donut) {
@@ -43,7 +45,8 @@ export class DonutService {
           }
           return donut;
         }));
-      })
+      }),
+      catchError(this.handleError)
     );
   }
   delete(payload: Donut) {
@@ -53,7 +56,16 @@ export class DonutService {
         return (this.donuts = this.donuts.filter(
           (donut: Donut) => donut.id !== payload.id
         ));
-      })
+      }),
+      catchError(this.handleError)
     );
+  }
+  private handleError(err: HttpErrorResponse) {
+    if (err.error instanceof ErrorEvent) {
+      //client-side
+    } else {
+      //server-side
+    }
+    return throwError(() => new Error(err.message));
   }
 }

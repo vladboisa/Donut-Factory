@@ -20,9 +20,15 @@ export class DonutSingleComponent {
     this.donutService.create(donut).subscribe();
   }
   onUpdate(donut: Donut) {
-    this.donutService.update(donut).subscribe();
+    this.donutService.update(donut).subscribe({
+      next:undefined,
+      error: (err) => console.log(`Error from Update : ${console.dir(err)}`)
+    });
   }
   onDelete(donut: Donut) {
-    this.donutService.delete(donut).subscribe();
+    this.donutService.delete(donut).subscribe({
+      next:undefined,
+      error: (err) => console.log(`Error from Update : ${console.dir(err)}`)
+    });
   }
 }
