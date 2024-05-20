@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, interval, map, of, tap, throwError } from 'rxjs';
+import { catchError, interval, map, of, retry, retryWhen, take, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +15,7 @@ export class DonutService {
     }
     return this.http.get<Donut[]>(`/api/donuts`).pipe(
       tap((donuts: Donut[]) => (this.donuts = donuts)),
+      retry({count:2,delay:5000}),
       catchError(this.handleError)
     );
   }
@@ -33,6 +34,7 @@ export class DonutService {
         return (this.donuts = [...this.donuts, resultDonut]);
       }),
       tap(() => console.log(this.donuts)),
+      retry({count:2,delay:5000}),
       catchError(this.handleError)
     );
   }
@@ -46,6 +48,7 @@ export class DonutService {
           return donut;
         }));
       }),
+      retry({count:2,delay:5000}),
       catchError(this.handleError)
     );
   }
@@ -57,6 +60,7 @@ export class DonutService {
           (donut: Donut) => donut.id !== payload.id
         ));
       }),
+      retry({count:2,delay:5000}),
       catchError(this.handleError)
     );
   }
