@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, interval, map, of, retry, retryWhen, take, tap, throwError } from 'rxjs';
 
 @Injectable({
@@ -8,12 +8,18 @@ import { catchError, interval, map, of, retry, retryWhen, take, tap, throwError 
 })
 export class DonutService {
   private donuts: Donut[] = [];
-  constructor(private http: HttpClient) {}
+  private headers = new HttpHeaders({
+  })
+
+  constructor(private http: HttpClient) {
+
+  }
   readAll() {
     if (this.donuts.length) {
       return of(this.donuts).pipe(tap((v) => console.log('1', v)));
     }
-    return this.http.get<Donut[]>(`/api/donuts`).pipe(
+    this.headers = this.headers.append('Api-token','345')
+    return this.http.get<Donut[]>(`/api/donuts`,{headers:this.headers}).pipe(
       tap((donuts: Donut[]) => (this.donuts = donuts)),
       retry({count:2,delay:5000}),
       catchError(this.handleError)
