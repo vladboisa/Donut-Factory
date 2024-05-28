@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError, interval, map, of, retry, retryWhen, take, tap, throwError } from 'rxjs';
+import { AsyncSubject, Subject, catchError, map, of, retry, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class DonutService {
   private donuts: Donut[] = [];
   private headers = new HttpHeaders({
   })
-
+  public createdDonutId$:Subject<Donut["id"]> = new Subject();
   constructor(private http: HttpClient) {
 
   }
@@ -37,7 +37,8 @@ export class DonutService {
   create(payload: Donut) {
     return this.http.post<Donut>(`/api/donuts`, payload).pipe(
       tap((resultDonut) => {
-        return (this.donuts = [...this.donuts, resultDonut]);
+        this.createdDonutId$.next(resultDonut?.id)
+        return this.donuts = [...this.donuts, resultDonut];
       }),
       tap(() => console.log(this.donuts)),
       retry({count:2,delay:5000}),
@@ -45,6 +46,8 @@ export class DonutService {
     );
   }
   update(payload: Donut) {
+    console.log('paylo',payload,'serv donut',this.donuts);
+
     return this.http.put<Donut>(`/api/donuts/${payload?.id}`, payload).pipe(
       tap((resultDonut) => {
         return (this.donuts = this.donuts.map((donut: Donut) => {

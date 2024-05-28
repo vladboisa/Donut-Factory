@@ -11,11 +11,18 @@ export class DonutSingleComponent {
   donut!: Donut;
   constructor(private donutService: DonutService) {}
   ngOnInit() {
-    const id = '80b3';
+    let id:Donut["id"] = '80b3';
+    this.donutService.createdDonutId$.subscribe({
+      next: (createdId) => this.donut.id = createdId
+    });
     this.donutService.readOneById(id).subscribe((donut) => {
       this.donut = donut;
     });
   }
+  ngOnDestroy() {
+    this.donutService.createdDonutId$.unsubscribe();
+  }
+
   onCreate(donut: Donut) {
     this.donutService.create(donut).subscribe();
   }

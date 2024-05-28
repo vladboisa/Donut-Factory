@@ -20,6 +20,7 @@ export class DonutFormComponent {
   @Output() createForm = new EventEmitter<Donut>();
   @Output() updateForm = new EventEmitter<Donut>();
   @Output() deleteForm = new EventEmitter<Donut>();
+  @ViewChild('form') form:NgForm;
 
   icons: string[] = ['caramel', 'chocolate', 'default', 'glazed', 'white'];
 
@@ -43,6 +44,7 @@ export class DonutFormComponent {
   handleDelete() {
     if (confirm(`Are you really wan't to delete ${this.donut.name}?`)) {
       this.deleteForm.emit({ ...this.donut });
+      this.form.resetForm();
     }
   }
 }
