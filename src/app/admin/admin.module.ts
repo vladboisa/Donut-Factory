@@ -10,7 +10,8 @@ import { DonutCardComponent } from './components/donut-card/donut-card.component
 import { DonutFormComponent } from './components/donut-form/donut-form.component';
 
 const routes:Routes = [{path: 'donuts', component: DonutListComponent},
-{path:'donut', component: DonutSingleComponent},
+{path:'donuts/new', component: DonutSingleComponent},
+{path: 'donuts/:id', component: DonutSingleComponent},
 {path: '', redirectTo: 'donuts', pathMatch: 'full'}
 ];
 
