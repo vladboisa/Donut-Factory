@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Subject, catchError, map, of, retry, tap, throwError } from 'rxjs';
+import { ReplaySubject, catchError, map, of, retry, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,7 @@ export class DonutService {
   private donuts: Donut[] = [];
   private headers = new HttpHeaders({
   })
-  public createdDonutId$:Subject<Donut["id"]> = new Subject();
+  public createdDonutId$:ReplaySubject<Donut["id"]> = new ReplaySubject();
   constructor(private http: HttpClient) {
 
   }
@@ -25,7 +25,7 @@ export class DonutService {
       catchError(this.handleError)
     );
   }
-  readOneById(id: string) {
+  readOneById(id: string | null) {
     return this.readAll().pipe(
       map((donuts) => {
         const findedDonutById = donuts.find((elem: Donut) => elem.id === id);
@@ -62,7 +62,6 @@ export class DonutService {
   delete(payload: Donut) {
     return this.http.delete(`/api/donuts/${payload?.id}`).pipe(
       tap((resultDonut) => {
-        console.log(resultDonut);
         return (this.donuts = this.donuts.filter(
           (donut: Donut) => donut.id !== payload.id
         ));
