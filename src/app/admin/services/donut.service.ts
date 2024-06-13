@@ -37,7 +37,7 @@ export class DonutService {
   create(payload: Donut) {
     return this.http.post<Donut>(`/api/donuts`, payload).pipe(
       tap((resultDonut) => {
-        this.createdDonutId$.next(resultDonut?.id)
+        this.createdDonutId$.next(resultDonut.id)
         return this.donuts = [...this.donuts, resultDonut];
       }),
       tap(() => console.log(this.donuts)),

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Donut } from '../../models/donut.model';
 import { DonutService } from '../../services/donut.service';
 import { ActivatedRoute } from '@angular/router';
-import { map, take } from 'rxjs';
+import { map, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-donut-single',
@@ -19,13 +19,15 @@ export class DonutSingleComponent {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.donutService.readOneById(id).subscribe((donut) => {
       this.donut = donut;
+      if (!donut.id) {
+        this.donutService.createdDonutId$
+          .pipe(
+            take(1),
+            map((createdId) => (this.donut.id = createdId)),
+          )
+          .subscribe();
+      }
     });
-    this.donutService.createdDonutId$
-      .pipe(
-        take(1),
-        map((createdId) => (this.donut.id = createdId))
-      )
-      .subscribe();
   }
 
   onCreate(donut: Donut) {
