@@ -10,13 +10,12 @@ export class DonutService {
   private donuts: Donut[] = [];
   private headers = new HttpHeaders({
   })
-  public createdDonutId$:ReplaySubject<Donut["id"]> = new ReplaySubject();
   constructor(private http: HttpClient) {
 
   }
   readAll() {
     if (this.donuts.length) {
-      return of(this.donuts).pipe(tap((v) => console.log('1', v)));
+      return of(this.donuts);
     }
     this.headers = this.headers.append('Api-token','345')
     return this.http.get<Donut[]>(`/api/donuts`,{headers:this.headers}).pipe(
@@ -37,7 +36,6 @@ export class DonutService {
   create(payload: Donut) {
     return this.http.post<Donut>(`/api/donuts`, payload).pipe(
       tap((resultDonut) => {
-        this.createdDonutId$.next(resultDonut.id)
         return this.donuts = [...this.donuts, resultDonut];
       }),
       tap(() => console.log(this.donuts)),
