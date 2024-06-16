@@ -110,21 +110,27 @@
       </div>
     </ng-container>
   </label>
-  <button class="btn btn--green" type="button" (click)="handleCreate(form)">
+  <button class="btn btn--green" *ngIf="!isEditable" type="button" (click)="handleCreate(form)">
     Create Donut
-  </button>
-  <button class="btn btn--green" type="button" (click)="handleDelete()">
-    Delete Donut
   </button>
   <button
     class="btn btn--green"
     type="button"
+    *ngIf="isEditable"
     [disabled]="form.untouched"
     (click)="handleUpdate(form)"
   >
     Update Donut
   </button>
-  <button class="btn btn--grey" type="button" (click)="form.resetForm()">
+  <button class="btn btn--green" *ngIf="isEditable" type="button" (click)="handleDelete()">
+    Delete Donut
+  </button>
+  <button
+    class="btn btn--grey"
+    type="button"
+    *ngIf="form.touched"
+    (click)="form.resetForm()"
+  >
     Reset form
   </button>
   <pre>{{ form.value | json }} </pre>

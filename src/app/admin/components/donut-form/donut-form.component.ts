@@ -17,6 +17,7 @@ import { Donut } from '../../models/donut.model';
 export class DonutFormComponent {
   isFormChanged = false;
   @Input() donut!: Donut;
+  @Input() isEditable!:boolean;
   @Output() createForm = new EventEmitter<Donut>();
   @Output() updateForm = new EventEmitter<Donut>();
   @Output() deleteForm = new EventEmitter<Donut>();
@@ -29,6 +30,7 @@ export class DonutFormComponent {
   handleCreate(form: NgForm) {
     if (form.valid) {
       this.createForm.emit(form.value);
+      this.isEditable = !this.isEditable;
     } else {
       form.form.markAllAsTouched();
     }

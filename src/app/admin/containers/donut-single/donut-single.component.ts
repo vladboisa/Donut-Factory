@@ -11,19 +11,22 @@ import { map, take, tap } from 'rxjs';
 })
 export class DonutSingleComponent {
   donut!: Donut;
+  isEditable!: boolean;
+
   constructor(
     private donutService: DonutService,
     private activatedRoute: ActivatedRoute
   ) {}
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.isEditable = this.activatedRoute.snapshot.data.isEditable;
     this.donutService.readOneById(id).subscribe((donut) => {
       this.donut = donut;
       if (!donut.id) {
         this.donutService.createdDonutId$
           .pipe(
             take(1),
-            map((createdId) => (this.donut.id = createdId)),
+            map((createdId) => (this.donut.id = createdId))
           )
           .subscribe();
       }
