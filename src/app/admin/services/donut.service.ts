@@ -1,7 +1,8 @@
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { ReplaySubject, catchError, map, of, retry, tap, throwError } from 'rxjs';
+import { catchError, map, of, retry, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class DonutService {
       return of(this.donuts);
     }
     this.headers = this.headers.append('Api-token','345')
-    return this.http.get<Donut[]>(`/api/donuts`,{headers:this.headers}).pipe(
+    return this.http.get<Donut[]>(`${environment.api}/donuts`,{headers:this.headers}).pipe(
       tap((donuts: Donut[]) => (this.donuts = donuts)),
       retry({count:2,delay:5000}),
       catchError(this.handleError)
@@ -34,7 +35,7 @@ export class DonutService {
     );
   }
   create(payload: Donut) {
-    return this.http.post<Donut>(`/api/donuts`, payload).pipe(
+    return this.http.post<Donut>(`${environment.api}/donuts`, payload).pipe(
       tap((resultDonut) => {
         return this.donuts = [...this.donuts, resultDonut];
       }),
@@ -44,7 +45,7 @@ export class DonutService {
     );
   }
   update(payload: Donut) {
-    return this.http.put<Donut>(`/api/donuts/${payload?.id}`, payload).pipe(
+    return this.http.put<Donut>(`${environment.api}/donuts/${payload?.id}`, payload).pipe(
       tap((resultDonut) => {
         return (this.donuts = this.donuts.map((donut: Donut) => {
           if (donut.id === resultDonut.id) {
@@ -58,7 +59,7 @@ export class DonutService {
     );
   }
   delete(payload: Donut) {
-    return this.http.delete(`/api/donuts/${payload?.id}`).pipe(
+    return this.http.delete(`${environment.api}/donuts/${payload?.id}`).pipe(
       tap((resultDonut) => {
         return (this.donuts = this.donuts.filter(
           (donut: Donut) => donut.id !== payload.id
