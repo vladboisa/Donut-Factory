@@ -1,8 +1,10 @@
 {
+  "changeOrigin": true,
   "/api": {
-    "target": "http://localhost:3000",
+    "changeOrigin": true,
+    "target": "https://confusion-swamp-star.glitch.me/",
     "pathRewrite": {
-      "^/api": ""
+      "^/api": "https://confusion-swamp-star.glitch.me/"
     },
     "secure": false,
     "logLevel" : "debug"
