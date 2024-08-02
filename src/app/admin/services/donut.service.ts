@@ -1,4 +1,4 @@
-import { environment } from './../environments/environment';
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Donut } from '../models/donut.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
