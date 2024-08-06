@@ -1,0 +1,43 @@
+$color_1: #01a3a4;
+$color_2: #555;
+$color_3: white;
+$background-color_1: #fff;
+$background-color_2: #01a3a4;
+
+h2 {
+	color: $color_1;
+}
+label {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	color: $color_2;
+	font-weight: bold;
+}
+input {
+	display: block;
+	width: 100%;
+	margin-bottom: 15px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+button {
+	padding: 15px;
+	border-radius: 10px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border: none;
+	color: $color_3;
+	cursor: pointer;
+	background-color: $background-color_2;
+	width: 100%;
+	font-size: 16px;
+}
+.wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

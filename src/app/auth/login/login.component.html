@@ -1,1 +1,23 @@
-<p>login works!</p>
+<h2>Login</h2>
+<form #form="ngForm">
+  <label for="first">
+    Username:
+  </label>
+  <input type="text" id="first" name="first" placeholder="Enter your Username" required>
+
+  <label for="password">
+    Password:
+  </label>
+  <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+  <div>Not registered?
+    <a href="#" style="text-decoration: none;">
+      Create an account
+    </a>
+  </div>
+  <div class="wrap">
+    <button type="button">
+      Submit
+    </button>
+  </div>
+</form>
