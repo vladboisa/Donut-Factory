@@ -8,7 +8,6 @@ import { DonutSingleComponent } from './containers/donut-single/donut-single.com
 //component's
 import { DonutCardComponent } from './components/donut-card/donut-card.component';
 import { DonutFormComponent } from './components/donut-form/donut-form.component';
-import { LoginComponent } from '../auth/login/login.component';
 
 const routes:Routes = [{path: 'donuts', component: DonutListComponent},
 {path:'donuts/new', component: DonutSingleComponent, data: {isEditable:false}},
@@ -21,8 +20,7 @@ const routes:Routes = [{path: 'donuts', component: DonutListComponent},
     DonutListComponent,
     DonutCardComponent,
     DonutSingleComponent,
-    DonutFormComponent,
-    LoginComponent
+    DonutFormComponent
   ],
   imports: [
     CommonModule,FormsModule, RouterModule.forChild(routes)
