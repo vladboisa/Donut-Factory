@@ -1,11 +1,14 @@
 $color_1: #01a3a4;
 $color_2: #555;
 $color_3: white;
-$background-color_1: #fff;
+$color_4: #c14583;
 $background-color_2: #01a3a4;
 
 h2 {
 	color: $color_1;
+}
+a {
+	color: $color_4;
 }
 label {
 	display: block;
