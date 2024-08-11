@@ -4,6 +4,7 @@ import { DonutService } from '../../services/donut.service';
 
 @Component({
   selector: 'app-donut-list',
+  standalone: true,
   templateUrl: './donut-list.component.html',
   styleUrls: ['./donut-list.component.scss'],
 })

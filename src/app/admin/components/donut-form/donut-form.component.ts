@@ -11,6 +11,7 @@ import { Donut } from '../../models/donut.model';
 
 @Component({
   selector: 'app-donut-form',
+  standalone: true,
   templateUrl: './donut-form.component.html',
   styleUrls: ['./donut-form.component.scss'],
 })

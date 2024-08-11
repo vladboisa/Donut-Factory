@@ -3,6 +3,7 @@ import { Donut } from '../../models/donut.model';
 
 @Component({
   selector: 'app-donut-card',
+  standalone: true,
   templateUrl: './donut-card.component.html',
   styleUrls: ['./donut-card.component.scss']
 })
