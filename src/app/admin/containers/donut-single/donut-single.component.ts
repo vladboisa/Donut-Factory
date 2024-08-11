@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+
+import { DonutFormComponent } from '../../components/donut-form/donut-form.component';
 import { Donut } from '../../models/donut.model';
 import { DonutService } from '../../services/donut.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-donut-single',
   standalone: true,
+  imports: [RouterModule, DonutFormComponent, JsonPipe],
   templateUrl: './donut-single.component.html',
   styleUrls: ['./donut-single.component.scss'],
 })
