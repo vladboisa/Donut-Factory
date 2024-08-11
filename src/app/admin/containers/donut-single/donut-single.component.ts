@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-donut-single',
+  standalone: true,
   templateUrl: './donut-single.component.html',
   styleUrls: ['./donut-single.component.scss'],
 })
