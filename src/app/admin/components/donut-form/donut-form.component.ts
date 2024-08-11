@@ -3,15 +3,17 @@ import {
   EventEmitter,
   Input,
   Output,
-  SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Donut } from '../../models/donut.model';
+import { JsonPipe, NgForOf, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-donut-form',
   standalone: true,
+  imports: [RouterModule, DonutFormComponent, NgIf, FormsModule, JsonPipe, NgSwitch,NgSwitchCase, NgForOf ],
   templateUrl: './donut-form.component.html',
   styleUrls: ['./donut-form.component.scss'],
 })
