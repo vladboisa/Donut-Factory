@@ -6,10 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [],
   imports: [
     CommonModule, FormsModule
   ],
-  exports : [LoginComponent]
+  exports : []
 })
 export class AuthModule { }
