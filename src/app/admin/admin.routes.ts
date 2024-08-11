@@ -9,13 +9,13 @@ import { DonutSingleComponent } from './containers/donut-single/donut-single.com
 import { DonutCardComponent } from './components/donut-card/donut-card.component';
 import { DonutFormComponent } from './components/donut-form/donut-form.component';
 
-const routes:Routes = [{path: 'donuts', component: DonutListComponent},
+export const adminRoutes:Routes = [{path: 'donuts', component: DonutListComponent},
 {path:'donuts/new', component: DonutSingleComponent, data: {isEditable:false}},
 {path: 'donuts/:id', component: DonutSingleComponent, data: {isEditable:true}},
 {path: '', redirectTo: 'donuts', pathMatch: 'full'}
 ];
 
-@NgModule({
+/* @NgModule({
   declarations: [
     DonutListComponent,
     DonutCardComponent,
@@ -27,4 +27,4 @@ const routes:Routes = [{path: 'donuts', component: DonutListComponent},
   ],
   exports: [DonutListComponent, DonutSingleComponent]
 })
-export class AdminModule { }
+export class AdminModule { } */
