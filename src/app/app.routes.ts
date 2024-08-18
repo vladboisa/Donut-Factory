@@ -11,5 +11,6 @@ export const appRoutes: Routes = [
     providers: [importProvidersFrom(HttpClientModule), DonutService],
   },
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
+  {path: '', loadChildren: () => import ('./auth/auth.routes').then(x=>x.authRoutes) },
   { path: '**', redirectTo: 'admin' },
 ];
