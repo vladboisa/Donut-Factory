@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-donut-form',
   standalone: true,
-  imports: [RouterModule, DonutFormComponent, NgIf, FormsModule, JsonPipe, NgSwitch,NgSwitchCase, NgForOf ],
+  imports: [RouterModule, NgIf, JsonPipe, NgSwitch,NgSwitchCase, NgForOf, FormsModule],
   templateUrl: './donut-form.component.html',
   styleUrls: ['./donut-form.component.scss'],
 })
