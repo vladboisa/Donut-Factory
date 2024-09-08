@@ -2,8 +2,10 @@
   <a routerLink="new" class="btn btn--green">New Donut <img src="/assets/img/icon/plus.svg" alt="Plus icon"></a>
 </nav>
 <ng-container *ngIf="donuts?.length; else nothing">
-  <app-donut-card *ngFor="let donut of donuts; trackBy: trackById"[donut]="donut"></app-donut-card>
+  <app-donut-card *ngFor="let donut of donuts; trackBy: trackById" [donut]="donut"></app-donut-card>
 </ng-container>
 <ng-template #nothing>
   <p>No Donuts here...</p>
+  <app-spinner>
+  </app-spinner>
 </ng-template>
