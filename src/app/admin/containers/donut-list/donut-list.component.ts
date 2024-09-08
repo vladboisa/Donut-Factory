@@ -4,11 +4,12 @@ import { DonutService } from '../../services/donut.service';
 import { RouterModule } from '@angular/router';
 import { DonutCardComponent } from '../../components/donut-card/donut-card.component';
 import { NgForOf, NgIf } from '@angular/common';
+import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-donut-list',
   standalone: true,
-  imports: [RouterModule, DonutCardComponent, NgIf, NgForOf],
+  imports: [RouterModule, DonutCardComponent, NgIf, NgForOf, SpinnerComponent],
   templateUrl: './donut-list.component.html',
   styleUrls: ['./donut-list.component.scss'],
 })
