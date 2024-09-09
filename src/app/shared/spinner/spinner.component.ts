@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerService } from '../services/spinner.service';
+import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-spinner',
@@ -10,7 +12,23 @@ import { SpinnerService } from '../services/spinner.service';
   styleUrls: ['./spinner.component.scss']
 })
 export class SpinnerComponent {
-constructor (public spinnerService: SpinnerService) {
+  @Input() detectRouteTransitions = false;
+constructor (public spinnerService: SpinnerService, private router: Router) {
+}
+ngOnInit() {
+  if (this.detectRouteTransitions) {
+    this.router.events
+      .pipe(
+        tap((event) => {
+          if (event instanceof RouteConfigLoadStart) {
+            this.spinnerService.showSpinner();
+          } else if (event instanceof RouteConfigLoadEnd) {
+            this.spinnerService.hideSpinner();
+          }
+        })
+      )
+      .subscribe();
+  }
+}
+}
 
-}
-}
