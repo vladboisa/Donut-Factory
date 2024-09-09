@@ -9,7 +9,7 @@ import { SpinnerComponent } from 'src/app/shared/spinner/spinner.component';
 @Component({
   selector: 'app-donut-list',
   standalone: true,
-  imports: [RouterModule, DonutCardComponent, NgIf, NgForOf, SpinnerComponent],
+  imports: [RouterModule, DonutCardComponent, NgIf, NgForOf],
   templateUrl: './donut-list.component.html',
   styleUrls: ['./donut-list.component.scss'],
 })

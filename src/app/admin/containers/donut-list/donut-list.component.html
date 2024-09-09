@@ -4,8 +4,6 @@
 <ng-container *ngIf="donuts?.length; else nothing">
   <app-donut-card *ngFor="let donut of donuts; trackBy: trackById" [donut]="donut"></app-donut-card>
 </ng-container>
-<ng-template #nothing>
-  <p>No Donuts here...</p>
-  <app-spinner>
-  </app-spinner>
+<ng-template #nothing >
+  <p style="text-align: center;">No Donuts here...</p>
 </ng-template>
