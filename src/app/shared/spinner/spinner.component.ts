@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerService } from '../services/spinner.service';
-import { RouteConfigLoadEnd, RouteConfigLoadStart, Router } from '@angular/router';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { tap } from 'rxjs';
 
 @Component({
@@ -20,9 +20,9 @@ ngOnInit() {
     this.router.events
       .pipe(
         tap((event) => {
-          if (event instanceof RouteConfigLoadStart) {
+          if (event instanceof NavigationStart) {
             this.spinnerService.showSpinner();
-          } else if (event instanceof RouteConfigLoadEnd) {
+          } else if (event instanceof NavigationEnd) {
             this.spinnerService.hideSpinner();
           }
         })
