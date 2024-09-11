@@ -13,17 +13,21 @@ import { tap } from 'rxjs';
 })
 export class SpinnerComponent {
   @Input() detectRouteTransitions = false;
+  timeout:ReturnType<typeof setTimeout>;
 constructor (public spinnerService: SpinnerService, private router: Router) {
 }
 ngOnInit() {
-  if (this.detectRouteTransitions) {
+  if (this.detectRouteTransitions){
     this.router.events
       .pipe(
         tap((event) => {
           if (event instanceof NavigationStart) {
             this.spinnerService.showSpinner();
           } else if (event instanceof NavigationEnd) {
-            this.spinnerService.hideSpinner();
+            this.timeout = setTimeout(() => {
+              clearTimeout(this.timeout);
+              this.spinnerService.hideSpinner();
+            }, 500);
           }
         })
       )
