@@ -42,7 +42,7 @@ export class DonutSingleComponent {
   onDelete(donut: Donut) {
     this.donutService.delete(donut).subscribe({
       next: ()=>this.router.navigate(['admin','donuts']),
-      error: (err) => console.log(`Error from Update : ${console.dir(err)}`),
+      error: (err) => console.log(`Error from Delete : ${console.dir(err)}`),
     });
   }
 }
