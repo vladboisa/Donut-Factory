@@ -27,7 +27,7 @@ ngOnInit() {
             this.timeout = setTimeout(() => {
               clearTimeout(this.timeout);
               this.spinnerService.hideSpinner();
-            }, 500);
+            }, 300);
           }
         })
       )
