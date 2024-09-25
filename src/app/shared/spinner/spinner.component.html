@@ -1,8 +1,6 @@
-<ng-container *ngIf="(spinnerService.isLoading$ | async)">
-  <div class="lds-ellipsis">
+  <div class="lds-ellipsis"  *ngIf="(spinnerService.isLoading$ | async)">
     <div></div>
     <div></div>
     <div></div>
     <div></div>
   </div>
-</ng-container>
