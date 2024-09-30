@@ -1,5 +1,4 @@
 import { importProvidersFrom } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { Routes } from '@angular/router';
 import { DonutService } from './admin/services/donut.service';
 import { FormsModule } from '@angular/forms';
