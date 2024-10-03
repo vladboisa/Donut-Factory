@@ -44,8 +44,8 @@
                 }
               ],
               "fileReplacements": [{
-                "replace": "src/app/admin/environments/environment.ts",
-                "with": "src/app/admin/environments/environment.prod.ts"
+                "replace": "src/app/environments/environment.ts",
+                "with": "src/app/environments/environment.prod.ts"
                 }
                 ],
               "outputHashing": "all"
